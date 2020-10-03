@@ -4,6 +4,12 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300italic,700,700italic">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/milligram/1.4.1/milligram.css">
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
+integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="
+crossorigin=""/>
+<script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"
+integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
+crossorigin=""></script>
 <!-- Global site tag (gtag.js) - Google Analytics -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=UA-178659997-1"></script>
 <script>
@@ -17,8 +23,31 @@
 <body>
 <h1>Météo weekend</h1>
 <h2>Le temps du weekend...</h2>
-<p><i>Coming soon!</i></p>
+<p><div id="mapnext" style="width: 800px; height: 600px;"></div></p>
 <h2>Et du weekend prochain</h2>
-<p><i>Coming soon!</i>
+<p><div id="mapafternext" style="width: 800px; height: 600px;"></div></p>
+
+<script>
+  var map = L.map('mapnext',  {
+    center: [46.81180269590623, 2.2081367067264073],
+    zoom: 6,
+    minZoom: 1,
+    maxZoom: 11
+  });
+  var osm = L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors', minZoom: 1, maxZoom: 11}).addTo(map);
+  var lyr = L.tileLayer('./map_next/{z}/{x}/{y}.png', {tms: true, opacity: 0.7, attribution: "", minZoom: 1, maxZoom: 11}).addTo(map);
+</script>
+
+<script>
+  var map = L.map('mapafternext',  {
+    center: [46.81180269590623, 2.2081367067264073],
+    zoom: 6,
+    minZoom: 1,
+    maxZoom: 11
+  });
+  var osm = L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors', minZoom: 1, maxZoom: 11}).addTo(map);
+  var lyr = L.tileLayer('./map_after_next/{z}/{x}/{y}.png', {tms: true, opacity: 0.7, attribution: "", minZoom: 1, maxZoom: 11}).addTo(map);
+
+</script>
 </body>
 </html>

@@ -38,11 +38,13 @@ crossorigin=""></script>
       <h1>Météo weekend</h1>
     </header>
     <section class="container" id="nextweek">
-      <h2>Le temps du weekend à venir (<span id="datenext"></span>)</h2>
+      <h2>Le temps du weekend à venir</h2>
+      <h3>(<span id="datenext"></span> et <span id="datenext2"></span>)</h3>
       <p><div id="mapnext" style="width: 800px; height: 600px; z-index: 0"></div></p>
     </section>
     <section class="container" id="weekafternext">
-      <h2>Et du weekend prochain (<span id="dateafternext"></span>)</h2>
+      <h2>Et du weekend prochain</h2>
+      <h3>(<span id="dateafternext"></span> et <span id="dateafternext2"></span>)</h3>
       <p><div id="mapafternext" style="width: 800px; height: 600px; z-index: 0"></div></p>
     </section>
     <section class="container" id="about">
@@ -102,7 +104,9 @@ function loadJSON(url, callback) {
 document.onload = loadJSON("./values.json", function(res) {
     data_parsed = JSON.parse(res);
     document.getElementById('datenext').innerHTML = (new Date(data_parsed.next)).toDateString();
+    document.getElementById('datenext2').innerHTML = (new Date(new Date(data_parsed.next).getTime() + 86400000)).toDateString();
     document.getElementById('dateafternext').innerHTML = (new Date(data_parsed.afternext)).toDateString();
+    document.getElementById('dateafternext2').innerHTML = (new Date(new Date(data_parsed.afternext).getTime() + 86400000)).toDateString();
     document.getElementById('dateupdate').innerHTML = data_parsed.update;
 });
 </script>
